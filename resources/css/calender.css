@@ -4,7 +4,7 @@ body {font-family: Verdana, sans-serif;}
 .month {
   padding: 4% 2%;
   width: 96%;
-  background: #1abc9c;
+  background: #cfb87c;
   text-align: center;
 }
 
@@ -32,14 +32,14 @@ body {font-family: Verdana, sans-serif;}
   font-size: 0px; /* This is added to remove the space between the weekdays*/
   margin: 0;
   padding: 10px 0%;
-  background-color:#ddd;
+  background-color:#a2a4a3;
 }
 
 .weekdays li {
   font-size: 16px;
   display: inline-block;
   width: 13.6%;
-  color: #666;
+  color: #585a5c;
   text-align: center;
 }
 
