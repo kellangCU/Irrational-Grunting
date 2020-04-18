@@ -1,0 +1,46 @@
+DROP TABLE organizations;
+CREATE TABLE IF NOT EXISTS organizations(
+  organization_id SERIAL PRIMARY KEY,
+  contact VARCHAR(50),
+  org_name VARCHAR(50,
+  upcoming_events INT[]
+);
+
+
+DROP TABLE events;
+CREATE TABLE IF NOT EXISTS events (
+  event_id SERIAL PRIMARY KEY ,
+  start_date_time DATE NOT NULL,
+  location VARCHAR(50),
+  FOREIGN KEY (contact) REFERENCES organizations(contact),
+  attribute SMALLINT,
+  max_size SMALLINT,
+  FOREIGN KEY (organization_id) REFERENCES organizations(organization_id),
+  current_attending SMALLINT DEFAULT 0,
+  description TEXT
+);
+
+DROP TABLE archives;
+CREATE TABLE IF NOT EXISTS archives (
+  archive_id SERIAL PRIMARY KEY,
+  FOREIGN KEY (event_id) REFERENCES events(event_id),
+  last_update DATE
+);
+
+DROP TABLE users;
+CREATE TABLE IF NOT EXISTS users (
+  user_id SERIAL PRIMARY KEY,
+  user_email VARCHAR(50),
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  password VARCHAR(30)
+);
+
+DROP TABLE saved_events;
+CREATE TABLE IF NOT EXISTS saved_events (
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (event_id) REFERENCES events(event_id),
+  PRIMARY KEY (user_id, event_id),
+  timesaved DATE
+);
+
