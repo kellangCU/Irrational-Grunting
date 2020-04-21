@@ -21,7 +21,7 @@
       	  <div class="collapse navbar-collapse" id="navbarText">
       		<ul class="navbar-nav mr-auto">
       		  <li class="nav-item">
-      			     <a class="nav-link" href="#">Home</a>
+      			     <a class="nav-link" href="home.html">Home</a>
       		  </li>
       		  <li class="nav-item">
       			     <a class="nav-link" href="my_saved_events.html">Events</a>
@@ -32,40 +32,33 @@
       		</ul>
           <<ul class="nav navbar-nav navbar-right">
             <li><a href="signUp.html" class="btn btn-info btn-sm">Sign Up</a></li>
-            <li><a href="login.html" class="btn btn-info btn-sm">Login</a></li>
+            <li><a href="#" class="btn btn-info btn-sm">Login</a></li>
           </ul>
         </div>
-      	</nav>
-        <div class="bg">
-          <img src="../resources/img/cu-campus.jpg" alt="CU campus">
-            <style media="screen">
-            img {
-              max-width: 100%;
-              height: auto;
-            }
-            </style>
-            <h1>Upcoming Events</h1>
-            <div class="row container">
-              <div class="col card-deck">
-                <div class="col-4 card bg-light">
-                  <div class="card-body text-center">
-                    <h1>new event</h1>
-                    <p>Sample</p>
-                  </div>
+      </nav>
+        <div class="w3-container">
+          <div class="modal-dialog modal-login">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="text-center modal-title">Login page</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="username" placeholder="Username"
+                  required="required">
                 </div>
-                <div class="col-4 card bg-light">
-                  <div class="card-body text-center">
-                    <h1>new event</h1>
-                    <p>Sample</p>
-                  </div>
+                <div class="form-group">
+                  <input id="psw" type="password" class="form-control" name="password" placeholder="Password"
+                  required="required">
                 </div>
-                <div class="col-4 card bg-light">
-                  <div class="card-body text-center">
-                    <h1>new event</h1>
-                    <p>Sample</p>
-                  </div>
+                <div class="form-group">
+                  <button id="my_submit_button" class="btn btn-primary btn-block login-btn" disabled
+                  onClick="onClickFunction()">Sign in</button>
                 </div>
+              </div>
+              </div>
             </div>
+          </div>
         </div>
       </body>
     </html>

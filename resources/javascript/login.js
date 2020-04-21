@@ -18,19 +18,6 @@ function openModal() {
         var upperCaseLetters = /[A-Z]/g; // : Fill in the regular experssion for upperCaseLetters
         var numbers = /[0-9]/g; // : Fill in the regular experssion for digits
         var minLength = 8; // : Change the minimum length to what what it needs to be in the question
-        /* TODO: Question 1.1: Ends here */
-
-
-        /* TODO: Question 1.2:  Starts here */
-         /*
-         - So first read up on classList.
-         - Perform a console.log(letter.classList) and check the array that you see. By default the first time, there should be just 1 element and it should be
-         "invalid". "invalid" is a class that is present in login.css.
-         - Below, there are a bunch of if blocks and else blocks.
-         - Each if block means that some successful condition is satisfied for our password conditon. So the red cross need to be converted to a check mark.
-         - Each else block stands for a failed condition, so the green check mark needs to be a red cross again.
-         - All that you need to do is, in each of the blocks, fill in the correct classNames for the remove and the add methods.
-         */
 
         // Validate lowercase letters
         if(myInput.value.match(lowerCaseLetters)) {
@@ -67,9 +54,7 @@ function openModal() {
             length.classList.remove("valid");
             length.classList.add("invalid");
         }
-        /* TODO: Question 1.2:  Ends here */
     }
-    /* TODO Question 1.3: Starts here */
     confirmMyInput.onkeyup = function() {
                 // Validate password and confirmPassword
                 var passEqualsConfPass = (myInput.value == confirmMyInput.value ? true : false); // TODO: Change this to the condition that needs to be checked so that the text entered in password equals the text in confirm password
@@ -81,7 +66,6 @@ function openModal() {
                     match.classList.remove("valid");
                     match.classList.add("invalid");
                 }
-    /* TODO Question 1.3: Starts here */
 
                 // Disable or Enable the button based on the elements in classList
                 enableButton(letter, capital, number, length, match);
@@ -90,13 +74,12 @@ function openModal() {
 
 
 function enableButton(letter, capital, number, length, match) {
-    // TODO: Clear this function for students to implement
     var result = false;
     if(letter.classList.value == "valid" && capital.classList.value == "valid" && number.classList.value == "valid" && length.classList.value == "valid" && match.classList.value == "valid"){
       result = true;
     }
     var button = document.getElementById('my_submit_button');
-    var condition = result; // TODO: Replace false with the correct condition
+    var condition = result;
     if(condition) {
       button.disabled = false;
     }
