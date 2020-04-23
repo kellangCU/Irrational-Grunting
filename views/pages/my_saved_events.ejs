@@ -1,159 +1,125 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="../resources/css/search.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="home.html">
-        <img class="rounded-circle" src="../resources/img/cu_boulder_logo.jpg" alt="" width="30" height="30">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-           <a class="nav-link" href="home.html">Home</a>
-      </li>
-      <li class="nav-item">
-           <a class="nav-link" href="#">Events</a>
-      </li>
-      <li class="nav-item">
-           <a class="nav-link" href="user.html">Calender</a>
-      </li>
-    </ul>
-    <<ul class="nav navbar-nav navbar-right">
-      <li><a href="signUp.html" class="btn btn-info btn-sm">Sign Up</a></li>
-      <li><a href="login.html" class="btn btn-info btn-sm">Login</a></li>
-    </ul>
-  </div>
-  </nav>
-
-
-  <section class="jumbotron text-center mb-10">
+<%- include ("../partials/header") %>
+  <body>
+    <%- include ("../partials/navbar") %>
+    <section class="jumbotron text-center mb-10">
+      <div class="container">
+        <h1>My Saved Events</h1>
+        <p class="lead text-muted">Events I want to attend at CU Boulder.</p>
+        <a href="#" class="btn btn-primary my-2">Add Events</a>
+      </div>
+    </section>
+    <br>
     <div class="container">
-      <h1>My Saved Events</h1>
-      <p class="lead text-muted">Events I want to attend at CU Boulder.</p>
-      <a href="#" class="btn btn-primary my-2">Add Events</a>
-    </div>
-  </section>
-  <br>
-  <div class="container">
-    <div class="row mb-10">
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+      <div class="row mb-10">
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card mb-3 shadow-sm text-white bg-dark">
-          <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-          <div class="card-body">
-            <h5 class="card-title">Event Name</h5>
-            <p class="card-text"><small>March 23, 2020</small></p>
-            <p class="card-text">This is placeholder text for the event description.</p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+        <div class="col-md-4 mb-4">
+          <div class="card mb-3 shadow-sm text-white bg-dark">
+            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
+            <div class="card-body">
+              <h5 class="card-title">Event Name</h5>
+              <p class="card-text"><small>March 23, 2020</small></p>
+              <p class="card-text">This is placeholder text for the event description.</p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-</body>
+  </body>
+</html>

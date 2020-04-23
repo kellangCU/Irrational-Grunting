@@ -1,39 +1,6 @@
-<!doctype html>
-<html>
-  <head>
-    <title>User Account</title>
-    <link rel="stylesheet" type="text/css" href="../resources/css/calender.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  </head>
+<%- include ("../partials/header") %>
   <body onload="initialize()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="home.html">
-          <img class="rounded-circle" src="../resources/img/cu_boulder_logo.jpg" alt="" width="30" height="30">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-             <a class="nav-link" href="home.html">Home</a>
-        </li>
-        <li class="nav-item">
-             <a class="nav-link" href="my_saved_events.html">Events</a>
-        </li>
-        <li class="nav-item">
-             <a class="nav-link" href="#">Calender</a>
-        </li>
-      </ul>
-      <<ul class="nav navbar-nav navbar-right">
-        <li><a href="signUp.html" class="btn btn-info btn-sm">Sign Up</a></li>
-        <li><a href="login.html" class="btn btn-info btn-sm">Login</a></li>
-      </ul>
-    </div>
-    </nav>
+<%- include ("../partials/navbar") %>
     <div class="month">
       <ul>
         <li onclick="cycleLeft()" class="prev"><button>&#10094;</button></li> <!-- These are the codes for the left and right arrows-->
