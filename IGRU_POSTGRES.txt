@@ -1,16 +1,17 @@
 DROP TABLE organizations;
 CREATE TABLE IF NOT EXISTS organizations(
   organization_id SERIAL PRIMARY KEY,
+  org_name VARCHAR(50),
   contact VARCHAR(50),
-  org_name VARCHAR(50,
   upcoming_events INT[]
 );
 
 
 DROP TABLE events;
 CREATE TABLE IF NOT EXISTS events (
-  event_id SERIAL PRIMARY KEY ,
-  start_date_time DATE NOT NULL,
+  event_id SERIAL PRIMARY KEY,
+  event_title VARCHAR(50),
+  start_date_time DATETIME NOT NULL,
   location VARCHAR(50),
   FOREIGN KEY (contact) REFERENCES organizations(contact),
   attribute SMALLINT,
@@ -24,7 +25,7 @@ DROP TABLE archives;
 CREATE TABLE IF NOT EXISTS archives (
   archive_id SERIAL PRIMARY KEY,
   FOREIGN KEY (event_id) REFERENCES events(event_id),
-  last_update DATE
+  last_update DATETIME
 );
 
 DROP TABLE users;
@@ -41,6 +42,10 @@ CREATE TABLE IF NOT EXISTS saved_events (
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (event_id) REFERENCES events(event_id),
   PRIMARY KEY (user_id, event_id),
-  timesaved DATE
+  timesaved DATETIME
 );
 
+INSERT INTO events(event_title, start_date_time, location, contact, attribute, max_size, organization_id, current_attending, description)
+VALUES('EWB Nepal Presentation', '2020-04-25 12:00:00', 'Virtual Zoom', 'ewb.colorado@gmail.com', 1, 200, 1, 50, 'Learn about EWB Nepal!'),
+VALUES('Leeds Consulting Group', '2020-04-27 15:00:00', 'Virtual Hangouts', 'leedsconsultinggroup@colorado.edu', 1, 200, 1, 50, 'Learn about LCG!')
+;
