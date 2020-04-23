@@ -55,6 +55,7 @@ app.get('/user', function(req, res) {
     m_title:"User Calendar"
   })
 })
-//app.listen(process.env.PORT);
-app.listen(3000);
-console.log("Listening on port 3000");
+var port = process.env.PORT;
+app.listen(process.env.PORT);
+//app.listen(3000);
+console.log("Listening on port " + port.toString());
