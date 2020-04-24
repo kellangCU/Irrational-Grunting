@@ -8,7 +8,7 @@ var pgp = require('pg-promise')();
 
 const dbConfig = process.env.DATABASE_URL;
 
-//var db = pgp(dbConfig);
+var db = pgp(dbConfig);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -16,9 +16,22 @@ app.use(express.static(__dirname + '/'));
 
 // Landing Page
 app.get('/', function(req, res) {
-  res.render('pages/home', {
-    m_title:"CU Boulder Event Manager"
-  });
+  var query = "select * from events order by start_date_time limit 3";
+  db.any(query)
+    .then(function (rows) {
+      res.render('pages/home', {
+        console.log(rows);
+        m_title:"CU Boulder Event Manager",
+        data: rows
+      })
+    })
+    .catch(function (err) {
+      console.log("Error fetching events for home.");
+      res.render('pages/home', {
+        m_title:"CU Boulder Event Manager",
+        data:""
+      });
+    })
 });
 
 app.get('/login', function(req, res) {

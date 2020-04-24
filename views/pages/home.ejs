@@ -4,32 +4,33 @@
     <div class="bg">
       <img src="../resources/img/cu-campus.jpg" alt="CU campus">
       <style media="screen">
-            img {
-              max-width: 100%;
-              height: auto;
-            }
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       </style>
-      <h1>Upcoming Events</h1>
-      <div class="row container">
+      <% 
+        var header="No Upcoming Events";
+        if (data) {
+          header="Upcoming Events"
+        } 
+      %>
+      <h1><%- header %></h1>
+      <div class="row container" id="upcoming_events">
         <div class="col card-deck">
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
-          </div>
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
-          </div>
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
-          </div>
+      <% if (data) {
+          header="<h1>Upcoming Events</h1>";
+          var cards='';
+          data.foreach(function(event){
+            cards =+"<div class='col-4 card bg-light'>"
+                  + "<div class='card-body text-center'>"
+                  + "<h1>"+event.event_title+"</h1>"
+                  + "<p>"+event.start_date_time+"</p>"
+                  + "<p>"+event.location+"</p>"
+                  + "</div>"
+                  + "</div>";
+          }) %>
+      <% } %>
         </div>
       </div>
     </div>
