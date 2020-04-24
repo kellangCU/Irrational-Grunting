@@ -19,8 +19,8 @@ app.get('/', function(req, res) {
   var query = "select * from events order by start_date_time limit 3";
   db.any(query)
     .then(function (rows) {
+      console.log(rows);
       res.render('pages/home', {
-        console.log(rows);
         m_title:"CU Boulder Event Manager",
         data: rows
       })
