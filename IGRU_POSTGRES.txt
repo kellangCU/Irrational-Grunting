@@ -1,4 +1,4 @@
-DROP TABLE organizations;
+DROP TABLE IF EXISTS organizations;
 CREATE TABLE IF NOT EXISTS organizations(
   organization_id SERIAL PRIMARY KEY,
   org_name VARCHAR(50),
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS organizations(
 );
 
 
-DROP TABLE events;
+DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events (
   event_id SERIAL PRIMARY KEY,
   event_title VARCHAR(50),
@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS events (
   description TEXT
 );
 
-DROP TABLE archives;
+DROP TABLE IF EXISTS archives;
 CREATE TABLE IF NOT EXISTS archives (
   archive_id SERIAL PRIMARY KEY,
   FOREIGN KEY (event_id) REFERENCES events(event_id),
   last_update DATETIME
 );
 
-DROP TABLE users;
+DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
   user_email VARCHAR(50),
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(30)
 );
 
-DROP TABLE saved_events;
+DROP TABLE IF EXISTS saved_events;
 CREATE TABLE IF NOT EXISTS saved_events (
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (event_id) REFERENCES events(event_id),
