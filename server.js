@@ -19,9 +19,9 @@ app.get('/', function(req, res) {
   var query = "select * from events order by start_date_time limit 3";
   db.any(query)
     .then(function (rows) {
-      console.log(rows);
       res.render('pages/home', {
         m_title:"CU Boulder Event Manager",
+        local_css:"search.css",
         data: rows
       })
     })
@@ -29,6 +29,7 @@ app.get('/', function(req, res) {
       console.log("Error fetching events for home.");
       res.render('pages/home', {
         m_title:"CU Boulder Event Manager",
+        local_css:"search.css",
         data:""
       });
     })
@@ -68,7 +69,7 @@ app.get('/user', function(req, res) {
     m_title:"User Calendar"
   })
 })
+var port = 3000;
 var port = process.env.PORT;
-app.listen(process.env.PORT);
-//app.listen(3000);
+app.listen(port);
 console.log("Listening on port " + port.toString());
