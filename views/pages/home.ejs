@@ -21,7 +21,7 @@
       <% if (data) {
           header="<h1>Upcoming Events</h1>";
           var cards='';
-          data.foreach(function(event){
+          data.forEach(function(event){
             cards =+"<div class='col-4 card bg-light'>"
                   + "<div class='card-body text-center'>"
                   + "<h1>"+event.event_title+"</h1>"
