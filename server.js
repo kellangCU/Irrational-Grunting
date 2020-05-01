@@ -41,6 +41,12 @@ app.get('/login', function(req, res) {
   });
 });
 
+app.get('/addEVent', function(req, res) {
+  res.render('pages/addEvent', {
+    m_title:"Add Event"
+  });
+});
+
 app.get('/saved-events', function(req, res) {
   res.render('pages/my_saved_events', {
     local_css:"search.css",
