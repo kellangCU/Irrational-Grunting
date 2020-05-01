@@ -8,7 +8,7 @@ var pgp = require('pg-promise')();
 
 const dbConfig = process.env.DATABASE_URL;
 
-//var db = pgp(dbConfig);
+var db = pgp(dbConfig);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -16,14 +16,34 @@ app.use(express.static(__dirname + '/'));
 
 // Landing Page
 app.get('/', function(req, res) {
-  res.render('pages/home', {
-    m_title:"CU Boulder Event Manager"
-  });
+  var query = "select * from events order by start_date_time limit 3";
+  db.any(query)
+    .then(function (rows) {
+      res.render('pages/home', {
+        m_title:"CU Boulder Event Manager",
+        local_css:"search.css",
+        data: rows
+      })
+    })
+    .catch(function (err) {
+      console.log("Error fetching events for home.");
+      res.render('pages/home', {
+        m_title:"CU Boulder Event Manager",
+        local_css:"search.css",
+        data:""
+      });
+    })
 });
 
 app.get('/login', function(req, res) {
   res.render('pages/login', {
     m_title:"Login"
+  });
+});
+
+app.get('/addEVent', function(req, res) {
+  res.render('pages/addEvent', {
+    m_title:"Add Event"
   });
 });
 
@@ -54,7 +74,7 @@ app.get('/user', function(req, res) {
     m_title:"User Calendar"
   })
 })
+var port = 3000;
 var port = process.env.PORT;
-app.listen(process.env.PORT);
-//app.listen(3000);
+app.listen(port);
 console.log("Listening on port " + port.toString());

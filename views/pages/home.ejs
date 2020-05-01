@@ -1,34 +1,61 @@
 <%- include ("../partials/header") %>
-  <body>
+  <body style="background-color:#eee;">
     <%- include ("../partials/navbar") %>
-    <div class="bg">
+    <% function parseDate(time) {
+      var date = new Date(time);
+      var final = '';
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      final = days[date.getDay()];
+      final += ", " + months[date.getMonth()];
+      final += " " + date.getDay();
+      final += ", " + date.getFullYear();
+      var hour = (date.getHours()%12) + 1;
+      var pf = 'AM';
+      if (date.getHours() > 11) {
+        pf = 'PM';
+      }
+      final += " at " + hour;
+      final += ":" + date.getMinutes() + " " + pf;
+      return final;
+    } %>
+    <div class="bg" style="text-align:center">
       <img src="../resources/img/cu-campus.jpg" alt="CU campus">
       <style media="screen">
-            img {
-              max-width: 100%;
-              height: auto;
-            }
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       </style>
-      <h1>Upcoming Events</h1>
-      <div class="row container">
-        <div class="col card-deck">
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
-          </div>
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
-          </div>
-          <div class="col-4 card bg-light">
-            <div class="card-body text-center">
-              <h1>new event</h1>
-              <p>Sample</p>
-            </div>
+      <% 
+        var header="No Upcoming Events";
+        if (data) {
+          header="Upcoming Events"
+        } 
+      %>
+      <div style="text-align:center;">
+        <h1 style="margin-top:10px;margin-bottom:10px;"><%- header %></h1>
+        <div class="container" id="upcoming_events">
+          <div class="row mb-10">    
+        <% if (data) {
+            console.log(data);
+            var ncards='';
+            data.forEach(function(event){
+              var t = Date.parse(event.start_date_time);
+              var formatD = parseDate(t);
+              ncards += '<div class="col-md-4 mb-4">'
+                      + '<div class="card mb-3 shadow-sm text-white bg-dark">'
+                      + '<div class="card-body">'
+                      + '<h4 class="card-title">'+event.event_title+'</h4>'
+                      + '<p class="card-text"><small>'+formatD+'</small></p>'
+                      + '<p class="card-text">'+event.description+'</p>'
+                      + '</div><div class="card-footer">'
+                      + '<div class="d-flex justify-content-between align-items-center">'
+                      + '<p>Contact: '+event.contact+'</p>'
+                      + '</div></div></div></div>';
+            }) %>
+            <%- ncards %>
+        <% } %>
           </div>
         </div>
       </div>
