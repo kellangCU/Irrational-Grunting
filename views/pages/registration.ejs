@@ -1,0 +1,27 @@
+<%- include ("../partials/header") %>
+  <body>
+    <%- include ("../partials/navbar") %>
+    <div class="w3-container">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="text-center modal-title">Login page</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input id="orgName" type="text" class="form-control" name="org_name" placeholder="Organization"
+                required="required">
+          </div>
+          <div class="form-group">
+            <input id="contact" type="text" class="form-control" name="contact" placeholder="placeholder@email"
+                required="required">
+          </div>
+          <div class="form-group">
+            <input id="upcoming" type="text" class="form-control" name="upcoming_events" placeholder="# of events"
+                required="required">
+          </div>
+          <div class="form-group">
+            <button id="submit_button" class="btn btn-primary btn-block login-btn" disabled>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
