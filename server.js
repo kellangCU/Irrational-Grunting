@@ -48,7 +48,6 @@ app.get('/signup', function(req, res) {
     m_title:"Sign Up"
   });
 });
-
 app.get('/user', function(req, res) {
   res.render('pages/user', {
     local_css:"calendar.css",
