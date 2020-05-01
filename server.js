@@ -61,6 +61,12 @@ app.get('/search', function(req, res) {
   });
 });
 
+app.get('/registration', function(req, res) {
+  res.render('pages/registration', {
+    m_title:"Organization Registration"
+  });
+});
+
 app.get('/signup', function(req, res) {
   res.render('pages/signUp', {
     local_css:"login.css",
