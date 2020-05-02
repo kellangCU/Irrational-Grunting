@@ -30,12 +30,17 @@
             <div class="form-group">
               <label for="exampleFormControlSelect1">Organization</label>
               <select class="form-control" id="organization">
-                <option>Organization 1</option>
-                <option>Organization 2</option>
+              <% var organizations = '<option>None</option>'; 
+              if (data) {
+                data.forEach(function(org_name) {
+                  organizations += '<option>'+org_name.org_name+'</option>';
+                }) %>
+              <% } %>
+              <%- organizations %>
               </select>
             </div>
             <div class="form-group">
-              <button id="addOrganization" class="btn btn-primary" disabled>Add Organization</button>
+              <a id="addOrganization" class="btn btn-primary" href="/registration">Add Organization</a>
             </div>
 
             <div class="checkbox">
