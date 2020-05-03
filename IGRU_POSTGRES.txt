@@ -1,4 +1,9 @@
-DROP TABLE IF EXISTS organizations;
+DROP TABLE IF EXISTS organizations CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS archives CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS saved_events CASCADE;
+
 CREATE TABLE IF NOT EXISTS organizations(
   organization_id SERIAL,
   org_name VARCHAR(50),
@@ -7,8 +12,6 @@ CREATE TABLE IF NOT EXISTS organizations(
   PRIMARY KEY(organization_id, contact)
 );
 
-
-DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events (
   event_id SERIAL PRIMARY KEY,
   event_title VARCHAR(50),
@@ -23,7 +26,6 @@ CREATE TABLE IF NOT EXISTS events (
   description TEXT
 );
 
-DROP TABLE IF EXISTS archives;
 CREATE TABLE IF NOT EXISTS archives (
   archive_id SERIAL PRIMARY KEY,
   event_id SERIAL,
@@ -31,7 +33,6 @@ CREATE TABLE IF NOT EXISTS archives (
   last_update TIMESTAMP
 );
 
-DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
   user_email VARCHAR(50),
@@ -40,7 +41,6 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(30)
 );
 
-DROP TABLE IF EXISTS saved_events;
 CREATE TABLE IF NOT EXISTS saved_events (
   user_id SERIAL,
   event_id SERIAL,
