@@ -7,15 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true  })); // support encoded bodies
 var pgp = require('pg-promise')();
 
 const dbConfig = process.env.DATABASE_URL;
-/*
-const dbConfig = {
-  host: 'localhost',
-  port: 5432,
-  database: 'igru',
-  user: 'postgres',
-  password: 'fish'
-};
-*/
+
 var db = pgp(dbConfig);
 
 // set the view engine to ejs
@@ -55,26 +47,6 @@ app.get('/login', function(req, res) {
   res.render('pages/login', {
     m_title:"Login"
   });
-});
-
-app.get('/addEvent', function(req, res) {
-  var query = "select org_name from organizations order by org_name;";
-  db.any(query)
-    .then(function (rows) {
-      res.render('pages/addEvent', {
-        m_title:'Add Event',
-        local_css:'',
-        data: rows
-      })
-    })
-    .catch(function (err) {
-      console.log("Error fetching organizations for addEvent.");
-      res.render('pages/addEvent', {
-        m_title:'Add Event',
-        local_css:'',
-        data:''
-      });
-    })
 });
 
 app.get('/saved-events', function(req, res) {
@@ -121,6 +93,80 @@ app.post('/registration', function(req, res) {
         err: error
       })
     })
+});
+
+app.get('/addEvent', function(req, res) {
+  var query = "select org_name,organization_id from organizations order by org_name;";
+  db.any(query)
+    .then(function (rows) {
+      res.render('pages/addEvent', {
+        m_title:'Add Event',
+        data:rows,
+        response:''
+      })
+    })
+    .catch(function (err) {
+      console.log("Error fetching organizations for addEvent.");
+      console.log(err);
+      res.render('pages/addEvent', {
+        m_title:'Add Event',
+        data:'',
+        response:'Error fetching organizations'
+      });
+    })
+});
+
+app.post('/addEvent', function(req, res) {
+  var title = req.body.eventName;
+  var time = req.body.date;
+  var location = req.body.location;
+  var id = req.body.organization;
+  //var contact = req.body.contact;
+  var description = req.body.description;
+  var attribute = 0;
+  if (req.body.t_academic)
+    attribute += req.body.t_academic;
+  if (req.body.t_clubs)
+    attribute += req.body.t_clubs;
+  if (req.body.t_sports)
+    attribute += req.body.t_sports;
+  if (req.body.t_fundraising)
+    attribute += req.body.t_fundraising;
+  if (req.body.t_music)
+    attribute += req.body.t_music;
+  if (req.body.t_talks)
+    attribute += req.body.t_talks;
+  if (req.body.t_other)
+    attribute += req.body.t_other;
+  var query_org = "select org_name,organization_id from organizations order by org_name;";
+  var query_insert ="insert into events "
+                  + "(event_title, start_date_time, location, attribute, description, organization_id, contact) "
+                  + "values ('"+title+"','"+time+"','"+location+"','"+attribute+"','"+description+"','"+id+"',"
+                  + "(select contact from organizations where organization_id="+id+"));";
+  //var query_org_update ="update organizations set upcoming_events=("
+  //                    + "(select upcoming_events from organizations where organization_id="req.body.organization") || ARRAY[""]"
+  db.task('get-everything', task => {
+    return task.batch([
+      task.any(query_org),
+      task.any(query_insert),
+      //task.any(query_org_update)
+    ])
+  })
+  .then(info => {
+    res.render('pages/addEvent', {
+      m_title:'Add Event',
+      data: info[0],
+      response:'Successfully submitted event'
+    })
+  })
+  .catch(error => {
+    console.log(error);
+    res.render('pages/addEvent', {
+      m_title:'Add Event',
+      data:'',
+      response:'Error submitting event'
+    })
+  })
 });
 
 app.get('/signup', function(req, res) {

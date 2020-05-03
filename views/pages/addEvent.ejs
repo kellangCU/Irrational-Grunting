@@ -1,15 +1,15 @@
 <%- include ("../partials/header") %>
   <body>
     <%- include ("../partials/navbar") %>
-    <div class="w3-container" onclick="openModal()">
+    <div class="w3-container">
       <div class="modal-dialog modal-login">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="text-center modal-title">Add Event</h4>
           </div>
-          <div class="modal-body">
+          <form action="/addEvent" method="post" class="modal-body">
             <div class="form-group">
-              <input type="text" class="form-control" id="evenName" name="eventName" placeholder="Event Name"
+              <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Event Name"
               required="required">
             </div>
             <div class="form-group">
@@ -19,21 +19,20 @@
               <input type="text" class="form-control" id="location" name="location" placeholder="Location"
               required="required">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact Email"
               required="required">
-            </div>
+            </div> -->
             <div class="form-group">
               <textarea class="form-control" id="description" name="description" rows="4" placeholder="Event Description"></textarea>
             </div>
-
             <div class="form-group">
               <label for="exampleFormControlSelect1">Organization</label>
-              <select class="form-control" id="organization">
-              <% var organizations = '<option>None</option>'; 
+              <select class="form-control" id="organization" name="organization" required="required">
+              <% var organizations = '<option value="-1">None</option>'; 
               if (data) {
-                data.forEach(function(org_name) {
-                  organizations += '<option>'+org_name.org_name+'</option>';
+                data.forEach(function(org) {
+                  organizations += '<option value='+org.organization_id+'>'+org.org_name+'</option>';
                 }) %>
               <% } %>
               <%- organizations %>
@@ -42,36 +41,37 @@
             <div class="form-group">
               <a id="addOrganization" class="btn btn-primary" href="/registration">Add Organization</a>
             </div>
-
             <div class="checkbox">
               <label for="checkbox">Event Tags</label><br>
-              <label><input type="checkbox" value="">Academic</label>
+              <label><input type="checkbox" name="t_academic" value="1">Academic</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Clubs</label>
+              <label><input type="checkbox" name="t_clubs" value="2">Clubs</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Sports</label>
+              <label><input type="checkbox" name="t_sports" value="4">Sports</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Fundraising</label>
+              <label><input type="checkbox" name="t_fundraising" value="8">Fundraising</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Music</label>
+              <label><input type="checkbox" name="t_music" value="16">Music</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Talks</label>
+              <label><input type="checkbox" name="t_talks" value="32">Talks</label>
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Other</label>
+              <label><input type="checkbox" name="t_other" value="64">Other</label>
             </div>
-
             <br>
-
             <div class="form-group">
-              <button id="my_submit_button" class="btn btn-primary btn-block login-btn" disabled>Create Event</button>
+              <button id="my_submit_button" class="btn btn-primary btn-block login-btn">Create Event</button>
             </div>
-          </div>
+            <% if (response) {
+              var msg = "<p>"+response+"</p>"; %>
+              <%- msg %>
+           <% } %>
+          </form>
         </div>
       </div>
     </div>
