@@ -38,7 +38,6 @@
         <div class="container" id="upcoming_events">
           <div class="row mb-10">    
         <% if (data) {
-            console.log(data);
             var ncards='';
             data.forEach(function(event){
               var t = Date.parse(event.start_date_time);
