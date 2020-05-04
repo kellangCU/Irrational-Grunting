@@ -14,8 +14,7 @@ app.use(cookieParser());
 
 app.use(session({
   key: 'user_sid',
-  //secret: process.env.KEY,
-  secret: 'remove',
+  secret: process.env.KEY,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -38,14 +37,14 @@ var sessionChecker = (req, res, next) => {
   }    
 };
 
-//const dbConfig = process.env.DATABASE_URL;
-const dbConfig = {
+const dbConfig = process.env.DATABASE_URL;
+/*const dbConfig = {
   host: 'localhost',
   port: 5432,
-  database: 'igru',
+  database: '',
   user: 'postgres',
-  password: 'fish'
-};
+  password: ''
+}; */
 
 
 var db = pgp(dbConfig);
@@ -328,7 +327,7 @@ app.use(function (req, res, next) {
 });
 
 var port = 3000;
-//port = process.env.PORT;
+port = process.env.PORT;
 app.set('port', port);
 
 app.listen(port);
