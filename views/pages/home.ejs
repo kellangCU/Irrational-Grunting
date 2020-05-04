@@ -20,23 +20,43 @@
       return final;
     } %>
     <div class="bg" style="text-align:center">
-      <img src="../resources/img/cu-campus.jpg" alt="CU campus">
+      <div class="container">
+        <div class="text-centered">
+          <img src="../resources/img/cu-campus.jpg" alt="CU campus">
+          <style media="screen">
+            img {
+              max-width: 100%;
+              height: auto;
+            }
+          </style>
+          <h4>The CU Boulder Event Tracker</h4>
+        </div>
+      </div>
       <style media="screen">
-        img {
-          max-width: 100%;
-          height: auto;
+        .container {
+          position: relative;
+        }
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: black;
+          color: white;
+          padding-left: 20px;
+          padding-right: 20px;
         }
       </style>
-      <% 
+      <%
         var header="No Upcoming Events";
         if (data) {
           header="Upcoming Events"
-        } 
+        }
       %>
       <div style="text-align:center;">
         <h1 style="margin-top:10px;margin-bottom:10px;"><%- header %></h1>
         <div class="container" id="upcoming_events">
-          <div class="row mb-10">    
+          <div class="row mb-10">
         <% if (data) {
             var ncards='';
             data.forEach(function(event){
