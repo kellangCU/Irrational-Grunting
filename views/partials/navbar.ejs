@@ -1,31 +1,65 @@
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      	  <a class="navbar-brand" href="/">
-      		  <img class="rounded-circle" src="../resources/img/cu_boulder_logo.jpg" alt="" width="30" height="30">
-      	  </a>
-      	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      		  <span class="navbar-toggler-icon"></span>
-      	  </button>
-      	  <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="saved-events">Events</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="user">Calender</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="search">Search</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="registration">Registration</a>
-              </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="signup" class="btn btn-info btn-sm">Sign Up</a></li>
-              <li><a href="login" class="btn btn-info btn-sm">Login</a></li>
-            </ul>
-          </div>
-      	</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <script type="text/javascript">
+
+    var check = '<%= Session["user_sid"] %>';
+    if (check.val() != null && check.val() != '')
+    {
+      console.log("You stupid");
+      var logoutLI = document.createElement("li");
+      var logoutBut = document.createElement("a");
+      logoutLI.id = "logoutLI";
+      document.getElementById('Login/Sigup').appendChild(logoutLI);
+      logoutBut.class = "btn btn-info btn-sm";
+      logoutBut.innerHTML = "Logout";
+      document.getElementById('logoutLI').appendChild(logoutBut);
+
+    }
+    else {
+      console.log("maybe YOU did it");
+      var login = document.createElement("li");
+      var signUp = document.createElement("li");
+      var listThing1 = document.createElement("a");
+      var listThing2 = document.createElement("a");
+      listThing1.id = "signUp";
+      listThing2.id = "login";
+      document.getElementById('Login/Sigup').appendChild(listThing1);
+      document.getElementById('Login/Sigup').appendChild(listThing2);
+      signUp.class = "btn btn-info btn-sm";
+      signUp.innerHTML = "Sign UP";
+      signUp.href = "sign_up"
+      login.class = "btn btn-info btn-sm";
+      login.innerHTML = "Login";
+      login.href = "login"
+      document.getElementById('signUp').appendChild(signUp);
+      document.getElementById('login').appendChild(login);
+    }
+
+  </script>
+  <a class="navbar-brand" href="/">
+    <img class="rounded-circle" src="../resources/img/cu_boulder_logo.jpg" alt="" width="30" height="30">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="saved-events">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="user">Calender</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="search">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registration">Registration</a>
+      </li>
+    </ul>
+    <ul id="Login/Sigup" class="nav navbar-nav navbar-right">
+    </ul>
+  </div>
+</nav>
