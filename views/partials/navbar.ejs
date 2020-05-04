@@ -24,8 +24,13 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="signup" class="btn btn-info btn-sm">Sign Up</a></li>
-              <li><a href="login" class="btn btn-info btn-sm">Login</a></li>
+            <% if (logged_in) {
+             var buttons = '<li><a href="/logout" class="btn btn-info btn-sm">Logout</a></li>'; %>
+             <%- buttons %>
+            <% } else {
+              var buttons = '<li><a href="/signup" class="btn btn-info btn-sm">Sign Up</a></li><li><a href="/login" class="btn btn-info btn-sm">Login</a></li>'; %>
+              <%- buttons %>
+            <% } %>
             </ul>
           </div>
       	</nav>
