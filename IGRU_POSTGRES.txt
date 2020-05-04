@@ -33,12 +33,17 @@ CREATE TABLE IF NOT EXISTS archives (
   last_update TIMESTAMP
 );
 
+//
+// DO NOT RUN ANY BELOW
+//
+
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
-  user_email VARCHAR(50),
-  first_name VARCHAR(50),
-  last_name VARCHAR(50),
-  password VARCHAR(30)
+  email VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  saved_events INT[]
 );
 
 CREATE TABLE IF NOT EXISTS saved_events (
