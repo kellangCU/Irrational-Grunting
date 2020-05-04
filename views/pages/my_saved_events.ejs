@@ -1,9 +1,11 @@
 <%- include ("../partials/header") %>
   <body>
     <%- include ("../partials/navbar") %>
-    <% if (data){
-      console.log("Hello!")
-    }%>
+    <script type="text/javascript">
+      if (data) {
+        console.log('Hello!')
+      }
+    </script>
     <% function parseDate(time) {
       var date = new Date(time);
       var final = '';
