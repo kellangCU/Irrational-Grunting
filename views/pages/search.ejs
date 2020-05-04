@@ -1,58 +1,51 @@
 <%- include ("../partials/header") %>
   <body>
     <%- include ("../partials/navbar") %>
+    <% function parseDate(time) {
+      var date = new Date(time);
+      var final = '';
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      final = days[date.getDay()];
+      final += ", " + months[date.getMonth()];
+      final += " " + date.getDay();
+      final += ", " + date.getFullYear();
+      var hour = (date.getHours()%12) + 1;
+      var pf = 'AM';
+      if (date.getHours() > 11) {
+        pf = 'PM';
+      }
+      final += " at " + hour;
+      final += ":" + date.getMinutes() + " " + pf;
+      return final;
+    } %>
     <br>
     <br>
-
    <div class="row">
-<div class="column left">
-</div>
-
-  <div class="column right">
-    <div class="col text-center">
-      <div class="form-group">
-        <input type="query" class="form-control" id="searchbar" placeholder="Search">
-         <a class="btn btn-primary" href="addEvent">Add Event</a>
+    <div class="column left">
+    </div>
+      <div class="column right">
+        <div class="col text-center">
+          <div class="form-group">
+            <input type="query" class="form-control" id="searchbar" placeholder="Search">
+             <a class="btn btn-primary" href="addEvent">Add Event</a>
+          </div>
+        </div>
+        <% if (events) {
+          events.forEach( function (event) {
+            var t = Date.parse(event.start_date_time);
+            var format = parseDate(t);
+            var card = '<div class="card">';
+            card += "<div class='card-body'>";
+            card += "<h5 class='card-title'>"+event.event_title+"</h5>";
+            card += "<p class='card-text'>"+format+"</p>";
+            card += "<p class='card-text'>"+event.description+"</p>";
+            card += "<a href='#' class='btn btn-primary'>Add to Calendar</a>";
+            card += "</div></div>"; %>
+            <%- card %>
+          <% })
+        } %>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Event 1 Title</h5>
-        <p class="card-text">Date / Location</p>
-        <p class="card-text">A short description of the event</p>
-        <a href="#" class="btn btn-primary">Add to Calendar</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Event 2 Title</h5>
-        <p class="card-text">Date / Location</p>
-        <p class="card-text">A short description of the event</p>
-        <a href="#" class="btn btn-primary">Add to Calendar</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Event 3 Title</h5>
-        <p class="card-text">Date / Location</p>
-        <p class="card-text">A short description of the event</p>
-        <a href="#" class="btn btn-primary">Add to Calendar</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Event 4 Title</h5>
-        <p class="card-text">Date / Location</p>
-        <p class="card-text">A short description of the event</p>
-        <a href="#" class="btn btn-primary">Add to Calendar</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-</body>
+  </body>
 </html>
