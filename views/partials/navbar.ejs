@@ -1,7 +1,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <script type="text/javascript">
 
-            if (sessionStorage.user) {
+            var session = '<%= session.getAttribute("username") != null %>';
+            if (session) {
               console.log(1)
             } else {
               console.log('user not exist in the session storage')
