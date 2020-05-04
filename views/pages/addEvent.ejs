@@ -8,6 +8,10 @@
             <h4 class="text-center modal-title">Add Event</h4>
           </div>
           <form action="/addEvent" method="post" class="modal-body">
+          <% if (!logged_in) {
+            var msg = "<p>Must be signed in to add events</p>"; %>
+            <%- msg %>
+          <% } %>
             <div class="form-group">
               <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Event Name"
               required="required">
@@ -65,7 +69,11 @@
             </div>
             <br>
             <div class="form-group">
-              <button id="my_submit_button" class="btn btn-primary btn-block login-btn">Create Event</button>
+              <button id="my_submit_button" class="btn btn-primary btn-block login-btn"
+              <% if (!logged_in) { %>
+                <%- "disabled" %>
+              <% } %>
+              >Create Event</button>
             </div>
             <% if (response) {
               var msg = "<p>"+response+"</p>"; %>
