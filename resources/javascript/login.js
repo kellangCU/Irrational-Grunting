@@ -1,6 +1,5 @@
-/*
 function openModal() {
-    //Note that you do NOT have to do a document.getElementById anywhere in this exercise. Use the elements below
+    /* Note that you do NOT have to do a document.getElementById anywhere in this exercise. Use the elements below */
     var myInput = document.getElementById("psw");
     var confirmMyInput = document.getElementById("cpsw");
 	var letter = document.getElementById("letter");
@@ -14,7 +13,7 @@ function openModal() {
 	myInput.onkeyup = function() {
        console.log('helllooo');
 
-        // TODO: Question 1.1: Starts here
+        /* TODO: Question 1.1: Starts here */
         var lowerCaseLetters = /[a-z]/g; // : Fill in the regular experssion for lowerCaseLetters
         var upperCaseLetters = /[A-Z]/g; // : Fill in the regular experssion for upperCaseLetters
         var numbers = /[0-9]/g; // : Fill in the regular experssion for digits
@@ -89,12 +88,4 @@ function enableButton(letter, capital, number, length, match) {
 
 function onClickFunction() {
     alert("Hey! I'm all green! Well done.");
-}
-*/
-function CheckSession(){
-  if (sessionStorage.user) {
-    console.log(1)
-  } else {
-    console.log('user not exist in the session storage')
-  }
 }
