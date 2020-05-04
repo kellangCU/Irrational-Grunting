@@ -1,6 +1,27 @@
 <%- include ("../partials/header") %>
   <body>
     <%- include ("../partials/navbar") %>
+    <% if (data){
+      console.log("Hello!")
+    }%>
+    <% function parseDate(time) {
+      var date = new Date(time);
+      var final = '';
+      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      final = days[date.getDay()];
+      final += ", " + months[date.getMonth()];
+      final += " " + date.getDay();
+      final += ", " + date.getFullYear();
+      var hour = (date.getHours()%12) + 1;
+      var pf = 'AM';
+      if (date.getHours() > 11) {
+        pf = 'PM';
+      }
+      final += " at " + hour;
+      final += ":" + date.getMinutes() + " " + pf;
+      return final;
+    }%>
     <section class="jumbotron text-center mb-10">
       <div class="container">
         <h1>My Saved Events</h1>
