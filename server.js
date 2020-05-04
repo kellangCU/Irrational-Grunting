@@ -41,9 +41,9 @@ const dbConfig = process.env.DATABASE_URL;
 /*const dbConfig = {
   host: 'localhost',
   port: 5432,
-  database: '',
+  database: 'igru',
   user: 'postgres',
-  password: ''
+  password: 'fish'
 }; */
 
 
@@ -144,7 +144,7 @@ app.get('/', function(req, res) {
         m_title:"CU Boulder Event Manager",
         logged_in:logged_in,
         local_css:"search.css",
-        data: rows,
+        data: rows
       })
     })
     .catch(function (err) {
@@ -175,11 +175,25 @@ app.get('/search', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
     logged_in = 1;
   }
-  res.render('pages/search', {
-    m_title:"Event Search",
-    logged_in:logged_in,
-    local_css:"search.css"
-  });
+  var get_events = "select * from events;";
+  db.any(get_events)
+  .then(function (events) {
+    res.render('pages/search', {
+      m_title:"Event Search",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:events
+    })
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.render('pages/search', {
+      m_title:"Event Search",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:''
+    })
+  })
 });
 
 app.route('/registration')
