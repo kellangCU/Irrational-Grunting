@@ -85,7 +85,7 @@
             card += "<p class='card-text'>"+format+"</p>";
             card += "<p class='card-text'>"+event.description+"</p>";
             if (logged_in) {
-              card += "<button onclick='saveEvent(\""+event.event_id+"\")' class='btn btn-primary'>Add to Calendar</button>";
+              card += "<button onclick='saveEvent("\"+event.event_id+"\")' class='btn btn-primary'>Add to Calendar</button>";
             }
             card += "</div></div>"; %>
             <%- card %>
