@@ -14,7 +14,8 @@ app.use(cookieParser());
 
 app.use(session({
   key: 'user_sid',
-  secret: process.env.KEY,
+  //secret: process.env.KEY,
+  secret: 'change',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -37,14 +38,14 @@ var sessionChecker = (req, res, next) => {
   }    
 };
 
-const dbConfig = process.env.DATABASE_URL;
-/*const dbConfig = {
+//const dbConfig = process.env.DATABASE_URL;
+const dbConfig = {
   host: 'localhost',
   port: 5432,
   database: 'igru',
   user: 'postgres',
   password: 'fish'
-};*/
+};
 
 
 var db = pgp(dbConfig);
@@ -163,11 +164,79 @@ app.get('/saved-events', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
     logged_in = 1;
   }
-  res.render('pages/my_saved_events', {
-    m_title:"Saved Events",
-    logged_in:logged_in,
-    local_css:"search.css"
-  });
+  if (!logged_in) {
+    res.render('pages/my_saved_events', {
+      m_title:"Saved Events",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:'',
+      response:''
+    })
+    return;
+  }
+  var query = "select event_id, event_title, start_date_time, location, contact, description ";
+  query += "from events inner join users on events.event_id=any(users.saved_events);";
+  db.any(query)
+  .then(function (rows) {
+    res.render('pages/my_saved_events', {
+      m_title:"Saved Events",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:rows,
+      response:''
+    });
+  })
+  .catch(function (error) {
+    res.render('pages/my_saved_events', {
+      m_title:"Saved Events",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:rows,
+      response:''
+    });
+  })
+});
+app.post('/saved-events', function(req, res) {
+  var logged_in = 0;
+  var eId = req.body.event_id;
+  if (req.session.user && req.cookies.user_sid) {
+    logged_in = 1;
+  }
+  if (!logged_in) {
+    res.render('pages/my_saved_events', {
+      m_title:"Saved Events",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:'',
+      response:''
+    })
+    return;
+  }
+  var call_u = async () => {
+    await User.removeEvent(req.session.user.id, eId);
+    var query = "select event_id, event_title, start_date_time, location, contact, description ";
+    query += "from events inner join users on events.event_id=any(users.saved_events);";
+    db.any(query)
+    .then(function (rows) {
+      res.render('pages/my_saved_events', {
+        m_title:"Saved Events",
+        logged_in:logged_in,
+        local_css:"search.css",
+        events:rows,
+        response:''
+      });
+    })
+    .catch(function (error) {
+      res.render('pages/my_saved_events', {
+        m_title:"Saved Events",
+        logged_in:logged_in,
+        local_css:"search.css",
+        events:rows,
+        response:''
+      });
+    })
+  }
+  call_u();
 });
 
 app.get('/search', function(req, res) {
@@ -183,6 +252,7 @@ app.get('/search', function(req, res) {
       logged_in:logged_in,
       local_css:"search.css",
       events:events,
+      response:'',
       search_val:''
     })
   })
@@ -193,7 +263,8 @@ app.get('/search', function(req, res) {
       logged_in:logged_in,
       local_css:"search.css",
       events:'',
-      search_val:''
+      search_val:'',
+      response:''
     })
   })
 });
@@ -376,7 +447,7 @@ app.use(function (req, res, next) {
 });
 
 var port = 3000;
-port = process.env.PORT;
+//port = process.env.PORT;
 app.set('port', port);
 
 app.listen(port);

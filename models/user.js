@@ -64,10 +64,20 @@ User.addEvent = async function(u_id, event_id) {
     }
   }
 }
-User.prototype.removeEvent = function(event_id) {
-  var index = this.saved_events.indexOf(event_id);
-  if (index > -1) {
-    this.saved_events.splice(index, 1);
+User.removeEvent = async function(u_id, event_id) {
+  var t_user = await User.findByPk(u_id);
+  if (t_user) {
+    var s_events = t_user.dataValues.saved_events || []; 
+    console.log(s_events);
+    console.log(event_id);
+    console.log(s_events.includes(event_id));
+    if (s_events.includes(event_id)) {
+      const index = s_events.indexOf(event_id);
+      if (index > -1) {
+        s_events.splice(index, 1);
+      }
+      await User.update({saved_events: s_events}, {where: {id: u_id}});
+    }
   }
 }
 

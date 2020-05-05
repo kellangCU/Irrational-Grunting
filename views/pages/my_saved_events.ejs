@@ -8,17 +8,35 @@
       var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       final = days[date.getDay()];
       final += ", " + months[date.getMonth()];
-      final += " " + date.getDay();
+      final += " " + date.getDate();
       final += ", " + date.getFullYear();
-      var hour = (date.getHours()%12) + 1;
+      var hour = date.getHours();
+      if (hour == 0) {
+        hour = 12;
+      } else if (hour > 12) {
+        hour -= 12;
+      }
       var pf = 'AM';
       if (date.getHours() > 11) {
         pf = 'PM';
       }
       final += " at " + hour;
-      final += ":" + date.getMinutes() + " " + pf;
+      var minutes = date.getMinutes();
+      if (minutes == 0) {
+        minutes = "00";
+      }
+      final += ":" +minutes+ " " + pf;
       return final;
-    }%>
+    } %>
+    <script>
+      function removeEvent(event_id) {
+        document.getElementById('event_id').value = event_id;
+        document.getElementById('remove').submit();
+      }
+    </script>
+    <form id="remove" action="/saved-events" method="post" style="display:none;">
+      <input type="text" id="event_id" name="event_id">
+    </form>
     <section class="jumbotron text-center mb-10">
       <div class="container">
         <h1>My Saved Events</h1>
@@ -29,114 +47,25 @@
     <br>
     <div class="container">
       <div class="row mb-10">
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card mb-3 shadow-sm text-white bg-dark">
-            <img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">
-            <div class="card-body">
-              <h5 class="card-title">Event Name</h5>
-              <p class="card-text"><small>March 23, 2020</small></p>
-              <p class="card-text">This is placeholder text for the event description.</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">View Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <% if (events) {
+        events.forEach(function (event) {
+          var date = Date.parse(event.start_date_time);
+          var t = parseDate(date);
+          var card = '<div class="col-md-4 mb-4">';
+          card += '<div class="card mb-3 shadow-sm text-white bg-dark">';
+          card += '<img class="card-img-top" width="100%" src="https://cache.desktopnexus.com/thumbseg/215/215139-bigthumbnail.jpg">';
+          card += '<div class="card-body">';
+          card += '<h5 class="card-title">'+event.event_title+'</h5>';
+          card += '<p class="card-text"><small>'+t+'</small></p>';
+          card += '<p class="card-text">'+event.description+'</p>';
+          card += '</div>';
+          card += '<div class="card-footer">';
+          card += '<div class="d-flex justify-content-between align-items-center">';
+          card += '<button onclick="removeEvent(\''+event.event_id+'\')"type="button" class="btn btn-sm btn-outline-danger">Remove</button>';
+          card += '</div></div></div></div>'; %>
+          <%- card %>
+        <% })
+      } %>
       </div>
     </div>
   </body>
