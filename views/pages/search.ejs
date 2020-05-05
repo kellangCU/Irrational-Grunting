@@ -11,13 +11,11 @@
       final += " " + date.getDate();
       final += ", " + date.getFullYear();
       var hour = date.getHours();
-      console.log(hour);
       if (hour == 0) {
         hour = 12;
       } else if (hour > 12) {
         hour -= 12;
       }
-      console.log(hour);
       var pf = 'AM';
       if (date.getHours() > 11) {
         pf = 'PM';
@@ -33,29 +31,47 @@
     <br>
     <br>
     <script>
-    function updateSearch() {
-      var input = document.getElementById('searchbar');
-      var filter = input.value.toUpperCase();
-      var search_body = document.getElementById('search_parent').children;
-      for (var i = 0; i < search_body.length; ++i) {
-        var search_object = search_body[i];
-        var title = search_object.children[0].children[0].innerHTML;
-        if (title.toUpperCase().indexOf(filter) > -1) {
-          search_object.style.display = "";
-        } else {
-          search_object.style.display = "none";
+      function updateSearch() {
+        var input = document.getElementById('searchbar');
+        var filter = input.value.toUpperCase();
+        var search_body = document.getElementById('search_parent').children;
+        for (var i = 0; i < search_body.length; ++i) {
+          var search_object = search_body[i];
+          var title = search_object.children[0].children[0].innerHTML;
+          if (title.toUpperCase().indexOf(filter) > -1) {
+            search_object.style.display = "";
+          } else {
+            search_object.style.display = "none";
+          }
         }
       }
-    }
     </script>
+    <script>
+      function saveEvent(eventId) {
+        var eId = document.getElementById('eventId');
+        var s_val = document.getElementById('search_val'); 
+        eId.value = eventId;
+        s_val.value = document.getElementById('searchbar').value;
+        document.getElementById('save').submit();
+      }
+    </script>
+    <form id="save" style="display:none;" action="/search" method="post">
+      <input type="text" id="eventId" name="eventId">
+      <input type="text" id="search_val" name="search_val">
+    </form>
    <div class="row">
     <div class="column left">
     </div>
       <div class="column right">
         <div class="col text-center">
           <div class="form-group">
-            <input type="text" onkeyup="updateSearch()" class="form-control" id="searchbar" placeholder="Search">
-             <a class="btn btn-primary" href="addEvent">Add Event</a>
+            <input type="text" onkeyup="updateSearch()" class="form-control" id="searchbar" placeholder="Search"
+            <% if (0) {
+              var search = 'value="'+search_val+'"'; %>
+              <%- search_val %>
+            <% } %>
+            >
+             <a class="btn btn-primary" href="/addEvent">Add Event</a>
           </div>
         </div>
         <div id="search_parent">
@@ -63,14 +79,14 @@
           events.forEach( function (event) {
             var t = Date.parse(event.start_date_time);
             var format = parseDate(t);
-            console.log(event.start_date_time);
-            console.log(format);
             var card = '<div class="card search_element">';
             card += "<div class='card-body'>";
             card += "<h5 class='card-title'>"+event.event_title+"</h5>";
             card += "<p class='card-text'>"+format+"</p>";
             card += "<p class='card-text'>"+event.description+"</p>";
-            card += "<a href='#' class='btn btn-primary'>Add to Calendar</a>";
+            if (logged_in) {
+              card += "<button onclick='saveEvent(\""+event.event_id+"\")' class='btn btn-primary'>Add to Calendar</button>";
+            }
             card += "</div></div>"; %>
             <%- card %>
           <% })

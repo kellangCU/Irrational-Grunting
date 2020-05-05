@@ -44,7 +44,7 @@ const dbConfig = process.env.DATABASE_URL;
   database: 'igru',
   user: 'postgres',
   password: 'fish'
-}; */
+};*/
 
 
 var db = pgp(dbConfig);
@@ -175,14 +175,15 @@ app.get('/search', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
     logged_in = 1;
   }
-  var get_events = "select * from events;";
+  var get_events = "select * from events order by start_date_time;";
   db.any(get_events)
   .then(function (events) {
     res.render('pages/search', {
       m_title:"Event Search",
       logged_in:logged_in,
       local_css:"search.css",
-      events:events
+      events:events,
+      search_val:''
     })
   })
   .catch(function (error) {
@@ -191,7 +192,41 @@ app.get('/search', function(req, res) {
       m_title:"Event Search",
       logged_in:logged_in,
       local_css:"search.css",
-      events:''
+      events:'',
+      search_val:''
+    })
+  })
+});
+
+app.post('/search', function(req, res) {
+  var logged_in = 0;
+  if (req.session.user && req.cookies.user_sid) {
+    logged_in = 1;
+  }
+  var e_id = req.body.eventId;
+  var search = req.body.search_val;
+  var get_events = "select * from events order by start_date_time;";
+  User.addEvent(req.session.user.id, e_id);
+  db.any(get_events)
+  .then(function (events) {
+    res.render('pages/search', {
+      m_title:"Event Search",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:events,
+      search_val:search,
+      response:'Event successfully saved'
+    })
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.render('pages/search', {
+      m_title:"Event Search",
+      logged_in:logged_in,
+      local_css:"search.css",
+      events:'',
+      search_val:search,
+      response:'Error adding event'
     })
   })
 });
