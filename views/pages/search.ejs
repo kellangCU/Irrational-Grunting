@@ -66,12 +66,15 @@
         <div class="col text-center">
           <div class="form-group">
             <input type="text" onkeyup="updateSearch()" class="form-control" id="searchbar" placeholder="Search"
-            <% if (0) {
+            <% if (search_val) {
               var search = 'value="'+search_val+'"'; %>
               <%- search_val %>
             <% } %>
             >
              <a class="btn btn-primary" href="/addEvent">Add Event</a>
+             <% if (response) { %>
+               <%- "<p>"+response+"</p>" %>
+             <% } %>
           </div>
         </div>
         <div id="search_parent">
