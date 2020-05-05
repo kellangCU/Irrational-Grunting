@@ -19,12 +19,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="search">Search</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="addEvent">Add Event</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="registration">Registration</a>
-              </li>
+              <% if (logged_in) {
+              var add_events_organizations = '<li class="nav-item"><a class="nav-link" href="addEvent">Add Event</a></li> <li class="nav-item"><a class="nav-link" href="registration">Registration</a></li>'; %>
+              <%- add_events_organizations %>
+              } %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <% if (logged_in) {
