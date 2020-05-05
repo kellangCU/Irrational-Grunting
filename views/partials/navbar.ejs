@@ -10,12 +10,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="saved-events">Events</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="user">Calender</a>
-              </li>
+              <% if (logged_in) {
+              var saved_events = '<li class="nav-item"><a class="nav-link" href="saved-events">Events</a></li> <li class="nav-item"><a class="nav-link" href="user">Calender</a></li>'; %>
+              <%- saved_events %>
+            <% } %>
               <li class="nav-item">
                 <a class="nav-link" href="search">Search</a>
               </li>
