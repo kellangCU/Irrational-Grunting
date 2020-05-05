@@ -11,13 +11,11 @@
       final += " " + date.getDate();
       final += ", " + date.getFullYear();
       var hour = date.getHours();
-      console.log(hour);
       if (hour == 0) {
         hour = 12;
       } else if (hour > 12) {
         hour -= 12;
       }
-      console.log(hour);
       var pf = 'AM';
       if (date.getHours() > 11) {
         pf = 'PM';
