@@ -54,8 +54,15 @@ var User = sequelize.define('user', {
 User.prototype.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 }
-User.prototype.addEvent = function(event_id) {
-  this.saved_events.push(event_id); 
+User.addEvent = async function(u_id, event_id) {
+  var t_user = await User.findByPk(u_id);
+  if (t_user) {
+    var s_events = t_user.dataValues.saved_events || []; 
+    if (!s_events.includes(event_id)) {
+      s_events.push(event_id);
+      await User.update({saved_events: s_events}, {where: {id: u_id}});
+    }
+  }
 }
 User.prototype.removeEvent = function(event_id) {
   var index = this.saved_events.indexOf(event_id);
